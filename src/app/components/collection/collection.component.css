@@ -1,0 +1,126 @@
+.wrapper{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
+p,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+figure{
+    background: aliceblue
+}
+img{
+    vertical-align: middle;
+    width: 100%;
+    height: inherit;
+}
+nav{
+    display: flex;
+    padding: .5rem;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    padding: 1rem;
+}
+
+.sign_cart{
+    margin-left: auto
+}
+.navlinks{
+    display: flex;
+    list-style: none;
+}
+.showcltns{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+}
+.pro_img{
+    max-width: 200px;
+    height: 200px;
+    /* margin: auto; */
+    background: aliceblue;
+    padding: 20px;
+}
+.single_item{
+    /* text-align: center; */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* transition: ease-out 0.3s linear;  */
+    /* -webkit-transition: ease-out 0.0.3s; */
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+.q_view{
+    background: white;
+    color: red;
+    position: absolute;
+    bottom: -150px;
+    left: 0px;
+    width: 100%;
+    text-align: left;
+    padding: 30px;
+    z-index: 1;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+
+.single_item::after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+.single_item:hover{
+    cursor: pointer;
+}
+
+.single_item:hover:after {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+.single_item:hover .q_view {
+    bottom: 3.95rem;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+/* .single_item:hover .q_view{
+    visibility: visible;
+    position: absolute;
+    top: 50%;
+} */
