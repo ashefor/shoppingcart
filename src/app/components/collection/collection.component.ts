@@ -8,11 +8,47 @@ import { CollectionService } from 'src/app/services/collection.service';
 })
 export class CollectionComponent implements OnInit {
   private allcollection = [];
+  oneitem = new Object()
   private allimgs = []
-  constructor(private cs: CollectionService) { }
+  constructor(private cs: CollectionService) { 
+    let refs = {
+      modalEdicion: {
+        open: function() { ;
+        },
+        close:function() { ;
+                          
+        }
+      }
+    };
+  }
 
   ngOnInit() {
     this.collectAll()
+  }
+
+  openModal(i){
+    this.cs.viewMore(i).subscribe((data:any)=>{
+      // this.oneitem = data.description;
+      // this.oneitem.
+      this.oneitem = {
+        description: data.description,
+        price: data.price,
+        title: data.product_name,
+        image: data.img
+      }
+      console.log(this.oneitem)
+    })
+    let modal = document.getElementById('modalEdicion')
+    modal.classList.add('is-active')
+    console.log('clicked', i)
+  }
+
+  closeModal(){
+    this.oneitem = ""
+    document.getElementById('modalEdicion').classList.remove('is-active')
+    // let modal = document.getElementById('modalEdicion')
+    // modal.classList.add('is-active')
+    // console.log('clicked')
   }
 
   collectAll(){

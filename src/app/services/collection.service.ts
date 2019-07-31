@@ -12,4 +12,7 @@ export class CollectionService {
   getCollections() {
     return this.http.get(this.collecURL).map(res => res)
   }
+  viewMore(id){
+    return this.http.get(`${this.collecURL}/${id}`).map(res => res)
+  }
 }
