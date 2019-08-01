@@ -85,6 +85,15 @@ export class FakeBackendService implements InMemoryDbService {
                 price: faker.commerce.price()
             },
         ]
-        return { collection }
+        let cart = [
+            {
+                id: 12,
+                product_name: "Product Name",
+                description: faker.lorem.paragraphs(),
+                img: '../assets/j.png',
+                price: faker.commerce.price()
+            },
+        ]
+        return { collection, cart }
     }
 }

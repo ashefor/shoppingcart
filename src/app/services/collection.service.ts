@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 })
 export class CollectionService {
   private collecURL = 'api/collection'
+  private viewCart = 'api/cart'
   constructor(private http: HttpClient) { }
 
   getCollections() {
@@ -14,5 +15,17 @@ export class CollectionService {
   }
   viewMore(id){
     return this.http.get(`${this.collecURL}/${id}`).map(res => res)
+  }
+
+  viewcart(){
+    return this.http.get(this.viewCart).map(res => res)
+  }
+  addtocart(
+    id: number,
+    price: number,
+    product_name: string,
+    qty: number,
+    ){
+    return this.http.post(this.viewCart, {id, price, product_name, qty})
   }
 }

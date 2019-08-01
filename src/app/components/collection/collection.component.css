@@ -19,31 +19,7 @@ img{
     width: 100%;
     height: inherit;
 }
-nav{
-    display: flex;
-    padding: .5rem;
-}
 
-ul{
-    margin: 0;
-    padding: 0;
-}
-ul li{
-    padding: 1rem;
-}
-
-.sign_cart{
-    margin-left: auto
-}
-.navlinks{
-    display: flex;
-    list-style: none;
-}
-.showcltns{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 25px;
-}
 .pro_img{
     max-width: 200px;
     height: 200px;
@@ -52,12 +28,9 @@ ul li{
     padding: 20px;
 }
 .single_item{
-    /* text-align: center; */
     position: relative;
     overflow: hidden;
     z-index: 1;
-    /* transition: ease-out 0.3s linear;  */
-    /* -webkit-transition: ease-out 0.0.3s; */
     transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
@@ -118,4 +91,7 @@ ul li{
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
+}
+.moveright{
+    margin: auto;
 }

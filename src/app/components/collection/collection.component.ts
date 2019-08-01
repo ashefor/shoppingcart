@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from 'src/app/services/collection.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-collection',
@@ -7,54 +8,80 @@ import { CollectionService } from 'src/app/services/collection.service';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
+  qty: number = 1;
+  cart: any[] = [];
+  length;
   private allcollection = [];
-  oneitem = new Object()
-  private allimgs = []
-  constructor(private cs: CollectionService) { 
-    let refs = {
-      modalEdicion: {
-        open: function() { ;
-        },
-        close:function() { ;
-                          
-        }
-      }
-    };
-  }
+  oneitem = {};
+  singleprice;
+  singleproduct;
+  private allimgs = [];
+  prices: number;
+  size = null
+  product_id: number;
+  noSize;
+  constructor(private cs: CollectionService) { }
 
   ngOnInit() {
     this.collectAll()
   }
+  selectSize(event) {
+    if (event.target.value == "null") {
+      this.noSize = true;
+    }
+    else {
+      this.noSize = false;
+    }
+    this.size = event.target.value
+  }
 
-  openModal(i){
-    this.cs.viewMore(i).subscribe((data:any)=>{
-      // this.oneitem = data.description;
-      // this.oneitem.
+  chooseQty(e) {
+    this.qty = e.target.value
+  }
+  openModal(i) {
+    this.cs.viewMore(i).subscribe((data: any) => {
+      this.singleprice = data.price;
+      this.singleproduct = data.product_name;
       this.oneitem = {
         description: data.description,
         price: data.price,
         title: data.product_name,
         image: data.img
       }
-      console.log(this.oneitem)
     })
     let modal = document.getElementById('modalEdicion')
     modal.classList.add('is-active')
-    console.log('clicked', i)
+    this.product_id = i;
   }
 
-  closeModal(){
-    this.oneitem = ""
+  closeModal() {
     document.getElementById('modalEdicion').classList.remove('is-active')
-    // let modal = document.getElementById('modalEdicion')
-    // modal.classList.add('is-active')
-    // console.log('clicked')
+    this.oneitem = {};
+    this.qty = 1;
+    this.size = null;
   }
 
-  collectAll(){
-    this.cs.getCollections().subscribe((data:any)=>{
+  collectAll() {
+    this.cs.getCollections().subscribe((data: any) => {
       this.allcollection = data
       console.log(this.allcollection)
     })
+  }
+
+  addthisToCart() {
+    if ((this.size !== "small") && (this.size !== "medium") && (this.size !== "large")) {
+      this.noSize = true;
+    }
+    else {
+      this.noSize = false;
+      let newprice = (this.singleprice * this.qty).toFixed(2);
+      let arr = []
+      arr.push(this.singleproduct, newprice, this.qty)
+      this.cart.push(arr)
+      this.length  = this.cart.length;
+      setTimeout(()=>{
+        this.closeModal()
+      },1000)
+    }   
   }
 }
