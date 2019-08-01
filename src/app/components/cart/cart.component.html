@@ -153,7 +153,7 @@
                         </div>
                       </div>
                       <div class="media-right rem_mob">
-                        <button class="delete"></button>
+                        <button class="delete" (click)="removeItem(i)"></button>
                       </div>
                     </article>
               </td>
@@ -173,7 +173,7 @@
                       <p class="is-size-6 has-text-weight-light">
                         {{items.size | uppercase}}
                       </p>
-                      <a class="link has-text-danger has-text-weight-light">
+                      <a class="link has-text-danger has-text-weight-light" (click)="removeItem(i)">
                           Remove item
                       </a>
                     </div>

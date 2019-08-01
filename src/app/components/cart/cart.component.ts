@@ -28,7 +28,16 @@ export class CartComponent implements OnInit {
       this.newamount.push(pricearr)
       console.log(this.newamount)
     }
+  }
 
+  removeItem(i){
+    console.log(i)
+    this.cart.splice(i, 1)
+    console.log(this.cart)
+    this.length = this.cart.length
+    if(this.length < 1){
+      this.noItems = true;
+    }
   }
 
 }

@@ -77,6 +77,7 @@ export class CollectionComponent implements OnInit {
       this.ds.viewCart(this.cart)
       this.noSize = false;
       let arr = {
+        id: this.product_id,
         productname: this.singleproduct,
         newamount: this.singleprice,
         newqty: this.qty,
