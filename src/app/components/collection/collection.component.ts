@@ -73,12 +73,16 @@ export class CollectionComponent implements OnInit {
     if ((this.size !== "small") && (this.size !== "medium") && (this.size !== "large")) {
       this.noSize = true;
     }
-    else {
+    else{
       this.ds.viewCart(this.cart)
       this.noSize = false;
       let newprice = (this.singleprice * this.qty).toFixed(2);
-      let arr = []
-      arr.push(this.singleproduct, newprice, this.qty)
+      let arr = {
+        productname: this.singleproduct,
+        newamount: newprice,
+        newqty: this.qty,
+      }
+      // arr.push(this.singleproduct, newprice, this.qty)
       this.cart.push(arr)
       this.length = this.cart.length;
       setTimeout(() => {
