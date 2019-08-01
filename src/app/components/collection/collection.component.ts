@@ -11,10 +11,11 @@ export class CollectionComponent implements OnInit {
   qty: number = 1;
   cart: any[] = [];
   length;
-  private allcollection = [];
-  oneitem = {};
+  allcollection = [];
+  oneitem = new Object();
   singleprice;
   singleproduct;
+  singleimage;
   private allimgs = [];
   prices: number;
   size = null
@@ -42,12 +43,7 @@ export class CollectionComponent implements OnInit {
     this.cs.viewMore(i).subscribe((data: any) => {
       this.singleprice = data.price;
       this.singleproduct = data.product_name;
-      this.oneitem = {
-        description: data.description,
-        price: data.price,
-        title: data.product_name,
-        image: data.img
-      }
+      this.singleimage = data.img
     })
     let modal = document.getElementById('modalEdicion')
     modal.classList.add('is-active')
@@ -56,7 +52,9 @@ export class CollectionComponent implements OnInit {
 
   closeModal() {
     document.getElementById('modalEdicion').classList.remove('is-active')
-    this.oneitem = {};
+    this.singleprice = "";
+    this.singleproduct = ""
+    this.singleimage = ""
     this.qty = 1;
     this.size = null;
   }
@@ -78,10 +76,10 @@ export class CollectionComponent implements OnInit {
       let arr = []
       arr.push(this.singleproduct, newprice, this.qty)
       this.cart.push(arr)
-      this.length  = this.cart.length;
-      setTimeout(()=>{
+      this.length = this.cart.length;
+      setTimeout(() => {
         this.closeModal()
-      },1000)
-    }   
+      }, 1000)
+    }
   }
 }
