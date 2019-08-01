@@ -23,3 +23,9 @@ img{
 .moveright{
     margin: auto;
 }
+.righttext{
+    text-align: end !important
+}
+.rem_mob{
+    margin: auto
+}

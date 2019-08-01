@@ -9,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   cart: any[];
   length;
+  noItems;
   constructor(private ds: DataService) { }
 
   ngOnInit() {
     this.ds.currentItems.subscribe(items => this.cart = items)
     this.length = this.cart.length
+    if(this.length < 1){
+      this.noItems = true;
+    }
   }
 
 }
