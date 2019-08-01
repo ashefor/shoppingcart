@@ -9,12 +9,14 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './fakebackend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CollectionService } from './services/collection.service';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CollectionComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

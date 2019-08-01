@@ -1,0 +1,25 @@
+.wrapper{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
+p,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+figure{
+    background: aliceblue
+}
+img{
+    vertical-align: middle;
+    width: 100%;
+    height: inherit;
+}
+
+.moveright{
+    margin: auto;
+}

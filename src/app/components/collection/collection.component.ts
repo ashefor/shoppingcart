@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from 'src/app/services/collection.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -21,10 +22,12 @@ export class CollectionComponent implements OnInit {
   size = null
   product_id: number;
   noSize;
-  constructor(private cs: CollectionService) { }
+  constructor(private cs: CollectionService, private ds: DataService) { }
 
   ngOnInit() {
     this.collectAll()
+    this.ds.currentItems.subscribe(items => this.cart = items);
+    this.length = this.cart.length;
   }
   selectSize(event) {
     if (event.target.value == "null") {
@@ -71,6 +74,7 @@ export class CollectionComponent implements OnInit {
       this.noSize = true;
     }
     else {
+      this.ds.viewCart(this.cart)
       this.noSize = false;
       let newprice = (this.singleprice * this.qty).toFixed(2);
       let arr = []
@@ -81,5 +85,6 @@ export class CollectionComponent implements OnInit {
         this.closeModal()
       }, 1000)
     }
+    console.log(this.cart)
   }
 }
