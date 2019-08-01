@@ -10,7 +10,10 @@ export class CartComponent implements OnInit {
   cart: any[];
   length;
   noItems;
-  newamount = []
+  newamount = [];
+  qty;
+  total;
+  itemprice;
   constructor(private ds: DataService) { }
 
   ngOnInit() {
@@ -22,6 +25,8 @@ export class CartComponent implements OnInit {
     }
     for(let x of this.cart){
       // console.log(x)
+      this.itemprice = x.newamount
+      this.total = (x.newamount * x.newqty).toFixed(2)
       let pricearr: Array<any> = new Array()
       let price = (x.newamount * x.newqty).toFixed(2)
       pricearr.push(price)
@@ -38,6 +43,12 @@ export class CartComponent implements OnInit {
     if(this.length < 1){
       this.noItems = true;
     }
+  }
+
+  chooseQty(e) {
+    this.qty = e.target.value
+    console.log(this.qty)
+    this.total = (this.itemprice * this.qty).toFixed(2)
   }
 
 }

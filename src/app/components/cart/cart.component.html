@@ -148,7 +148,7 @@
                             <small>${{items.newamount}}</small>
                           </p>
                           <p>
-                            <input type="number" value="{{items.newqty}}">
+                            <input type="number" value="{{items.newqty}}" min="1">
                           </p>
                         </div>
                       </div>
@@ -185,12 +185,15 @@
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control">
-                  <input type="number" class="input" value="{{items.newqty}}">
+                  <input type="number" class="input" min="1" value="{{items.newqty}}" (change)="chooseQty($event)" (keyup)="chooseQty($event)">
                 </div>
               </td>
               <td class="righttext is-hidden-touch">
-                <p *ngFor="let price of newamount[i]; let y = index">
+                <!-- <p *ngFor="let price of newamount[i]; let y = index">
                   ${{price}}
+                </p> -->
+                <p>
+                  ${{total}}
                 </p>
               </td>
             </tr>
