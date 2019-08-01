@@ -29,3 +29,10 @@ img{
 .rem_mob{
     margin: auto
 }
+.cart_details{
+    border-top: 2px solid #dbdbdb;
+    padding: 20px 10px 20px 10px
+}
+.noItems{
+    border-bottom: 2px solid #dbdbdb
+}

@@ -86,14 +86,40 @@
       </nav>
     </div>
     <div class="section">
-      <a class="link">
+      <a class="link" *ngIf="!noItems" [routerLink]="['/collection']" routerLinkActive="router-link-active" >
         <i class="fas fa-angle-left"></i>
         Continue Shopping
       </a>
-      <!-- <div *ngIf="noItems">
-        No Items in your cart
-      </div> -->
-      <div>
+      <section *ngIf="noItems" class="noItems">
+          <table class="table is-fullwidth">
+            <thead class="hero-head">
+              <tr>
+                <th>My Cart</th>
+              </tr>
+            </thead>
+            <tbody class="hero-body">
+              <tr>
+                <td>
+                    <section class="hero is-medium is-bold">
+                        <div class="hero-body">
+                          <div class="container has-text-centered">
+                            <h1 class="title">
+                              No items in your cart
+                            </h1>
+                            <a class="link" [routerLink]="['/collection']" routerLinkActive="router-link-active" >
+                                <h2 class="subtitle">
+                                    Continue Shopping
+                                  </h2>
+                            </a>
+                          </div>
+                        </div>
+                      </section>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <div *ngIf="!noItems">
         <table class="table is-fullwidth">
           <thead>
             <tr>
@@ -108,8 +134,9 @@
               <td class="is-hidden-desktop">
                   <article class="media">
                       <figure class="media-left">
-                        <p class="image">
-                          <img src="https://bulma.io/images/placeholders/128x128.png">
+                        <p class="image is-64x64">
+                          <!-- <img src="https://bulma.io/images/placeholders/128x128.png"> -->
+                          <img src="{{items.imgUrl}}" alt="">
                         </p>
                       </figure>
                       <div class="media-content">
@@ -133,26 +160,28 @@
               <td class="is-hidden-touch">
                 <article class="media">
                   <figure class="media-left">
-                    <p class="image">
-                      <img src="https://bulma.io/images/placeholders/128x128.png">
+                    <p class="image is-128x128">
+                      <!-- <img src="https://bulma.io/images/placeholders/128x128.png"> -->
+                      <img src="{{items.imgUrl}}" alt="">
                     </p>
                   </figure>
                   <div class="media-content">
                     <div class="content">
-                      <p>
-                        <strong>{{items.productname}}</strong>
+                      <p class="is-size-5">
+                        <span>{{items.productname}}</span>
                       </p>
-                      <a >
-                        <p>
-                          remove item
-                        </p>
+                      <p class="is-size-6 has-text-weight-light">
+                        {{items.size | uppercase}}
+                      </p>
+                      <a class="link has-text-danger has-text-weight-light">
+                          Remove item
                       </a>
                     </div>
                   </div>
                 </article>
               </td>
               <td class="righttext is-hidden-touch">
-                {{items.newamount}}
+                ${{items.newamount}}
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control">
@@ -160,55 +189,59 @@
                 </div>
               </td>
               <td class="righttext is-hidden-touch">
-                {{items.productname}}
+                <p *ngFor="let price of newamount[i]; let y = index">
+                  ${{price}}
+                </p>
               </td>
             </tr>
           </tbody>
         </table>
-        <div class="columns">
-          <div class="column is-half">
-            <p>
-              Enter a promo code
-            </p>
-          </div>
-          <div class="column is-half">
-            <div class="level is-mobile">
-              <div class="level-left">
-                <div class="level-item">
+        <div class="cart_details">
+            <div class="columns">
+                <div class="column is-half">
                   <p>
-                    Subtotal
+                    Enter a promo code
                   </p>
                 </div>
-              </div>
-              <div class="level-right">
-                  <div class="level-item">
-                      <p>
-                        Amount
-                      </p>
+                <div class="column is-half">
+                  <div class="level is-mobile">
+                    <div class="level-left">
+                      <div class="level-item">
+                        <p>
+                          Subtotal
+                        </p>
+                      </div>
                     </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <p>
+                              Amount
+                            </p>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="level is-mobile">
+                      <div class="level-left">
+        
+                          <div class="level-item">
+                              <p>
+                                Shipping
+                              </p>
+                            </div>
+                      </div>
+                      <div class="level-right">
+                          <div class="level-item">
+                              <p>
+                                Free
+                              </p>
+                            </div>
+                      </div>
+                      </div>
+                  <button class="button is-fullwidth is-medium">
+                    Add To checkout
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="level is-mobile">
-                <div class="level-left">
-  
-                    <div class="level-item">
-                        <p>
-                          Shipping
-                        </p>
-                      </div>
-                </div>
-                <div class="level-right">
-                    <div class="level-item">
-                        <p>
-                          Free
-                        </p>
-                      </div>
-                </div>
-                </div>
-            <button class="button is-fullwidth is-medium">
-              Add To checkout
-            </button>
-          </div>
         </div>
       </div>
     </div>

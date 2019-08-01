@@ -76,11 +76,12 @@ export class CollectionComponent implements OnInit {
     else{
       this.ds.viewCart(this.cart)
       this.noSize = false;
-      let newprice = (this.singleprice * this.qty).toFixed(2);
       let arr = {
         productname: this.singleproduct,
-        newamount: newprice,
+        newamount: this.singleprice,
         newqty: this.qty,
+        imgUrl: this.singleimage,
+        size: this.size,
       }
       // arr.push(this.singleproduct, newprice, this.qty)
       this.cart.push(arr)
