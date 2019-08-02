@@ -3,9 +3,7 @@
     margin-left: auto;
     margin-right: auto;
 }
-#navbarBasicExample{
-    display: block !important;
-}
+
 a{
     text-decoration: none;
     color: unset;
