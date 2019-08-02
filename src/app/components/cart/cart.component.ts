@@ -14,15 +14,17 @@ export class CartComponent implements OnInit {
   qty;
   total;
   itemprice;
+  subtotal;
   constructor(private ds: DataService) { }
 
   ngOnInit() {
     this.ds.currentItems.subscribe(items => this.cart = items)
     this.length = this.cart.length
-    // console.log(this.cart)
+    console.log(this.cart)
     if(this.length < 1){
       this.noItems = true;
     }
+    let sum = 0;
     for(let x of this.cart){
       // console.log(x)
       this.itemprice = x.newamount
@@ -32,16 +34,31 @@ export class CartComponent implements OnInit {
       pricearr.push(price)
       this.newamount.push(pricearr)
       console.log(this.newamount)
+      let newsum = parseInt(x.total)
+      sum+= newsum
+      this.subtotal = sum
+      console.log(sum)
     }
   }
 
   removeItem(i){
     console.log(i)
-    this.cart.splice(i, 1)
     console.log(this.cart)
+    let index = this.cart.findIndex(item => item.id == i)
+    console.log(index)
+    if(index > -1){
+      this.cart.splice(index, 1)
+    }
     this.length = this.cart.length
     if(this.length < 1){
       this.noItems = true;
+    }
+    let sum = 0;
+    for(let y of this.cart){
+    let newsum = parseInt(y.total)
+    sum+= newsum
+    this.subtotal = sum
+    // console.log(sum)
     }
   }
 
@@ -49,6 +66,10 @@ export class CartComponent implements OnInit {
     this.qty = e.target.value
     console.log(this.qty)
     this.total = (this.itemprice * this.qty).toFixed(2)
+  }
+
+  showTot(){
+    console.log(this.subtotal)
   }
 
 }

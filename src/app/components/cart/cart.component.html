@@ -145,7 +145,7 @@
                             <strong>{{items.productname}}</strong>
                           </p>
                           <p>
-                            <small>${{items.newamount}}</small>
+                            <small>${{items.newamount | number: '.2'}}</small>
                           </p>
                           <p>
                             <input type="number" value="{{items.newqty}}" min="1">
@@ -173,7 +173,7 @@
                       <p class="is-size-6 has-text-weight-light">
                         {{items.size | uppercase}}
                       </p>
-                      <a class="link has-text-danger has-text-weight-light" (click)="removeItem(i)">
+                      <a class="link has-text-danger has-text-weight-light" (click)="removeItem(items.id)">
                           Remove item
                       </a>
                     </div>
@@ -181,7 +181,7 @@
                 </article>
               </td>
               <td class="righttext is-hidden-touch">
-                ${{items.newamount}}
+                ${{items.newamount | number: '.2'}}
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control">
@@ -189,11 +189,8 @@
                 </div>
               </td>
               <td class="righttext is-hidden-touch">
-                <!-- <p *ngFor="let price of newamount[i]; let y = index">
-                  ${{price}}
-                </p> -->
                 <p>
-                  ${{total}}
+                  ${{items.total | number: '.2'}}
                 </p>
               </td>
             </tr>
@@ -218,7 +215,7 @@
                     <div class="level-right">
                         <div class="level-item">
                             <p>
-                              Amount
+                              ${{subtotal | number: '.2'}}
                             </p>
                           </div>
                     </div>

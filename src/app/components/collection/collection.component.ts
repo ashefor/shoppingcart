@@ -83,6 +83,7 @@ export class CollectionComponent implements OnInit {
         newqty: this.qty,
         imgUrl: this.singleimage,
         size: this.size,
+        total: this.singleprice * this.qty
       }
       // arr.push(this.singleproduct, newprice, this.qty)
       this.cart.push(arr)
