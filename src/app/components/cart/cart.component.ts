@@ -15,7 +15,6 @@ export class CartComponent implements OnInit {
   total;
   itemprice;
   subtotal;
-  show = false;
   constructor(private ds: DataService, private elem: ElementRef) { }
 
   ngOnInit() {
@@ -43,7 +42,7 @@ export class CartComponent implements OnInit {
   }
   showMenu(){
     document.getElementById('burger').classList.toggle("is-active")
-    this.show =! this.show
+    document.getElementById('navbarBasicExample').classList.toggle('is-active')
   }
 
   removeItem(i){

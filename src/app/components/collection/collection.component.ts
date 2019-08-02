@@ -72,7 +72,7 @@ export class CollectionComponent implements OnInit {
 
   showMenu(){
     document.getElementById('burger').classList.toggle("is-active")
-    this.show =! this.show
+    document.getElementById('navbarBasicExample').classList.toggle('is-active')
   }
 
   addthisToCart() {
