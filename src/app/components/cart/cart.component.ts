@@ -1,5 +1,5 @@
 import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +15,8 @@ export class CartComponent implements OnInit {
   total;
   itemprice;
   subtotal;
-  constructor(private ds: DataService) { }
+  show = false;
+  constructor(private ds: DataService, private elem: ElementRef) { }
 
   ngOnInit() {
     this.ds.currentItems.subscribe(items => this.cart = items)
@@ -39,6 +40,10 @@ export class CartComponent implements OnInit {
       this.subtotal = sum
       console.log(sum)
     }
+  }
+  showMenu(){
+    document.getElementById('burger').classList.toggle("is-active")
+    this.show =! this.show
   }
 
   removeItem(i){

@@ -22,6 +22,7 @@ export class CollectionComponent implements OnInit {
   size = null
   product_id: number;
   noSize;
+  show = false;
   constructor(private cs: CollectionService, private ds: DataService) { }
 
   ngOnInit() {
@@ -67,6 +68,11 @@ export class CollectionComponent implements OnInit {
       this.allcollection = data
       console.log(this.allcollection)
     })
+  }
+
+  showMenu(){
+    document.getElementById('burger').classList.toggle("is-active")
+    this.show =! this.show
   }
 
   addthisToCart() {

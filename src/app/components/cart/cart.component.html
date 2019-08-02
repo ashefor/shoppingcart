@@ -22,7 +22,7 @@
               </p>
             </div>
           </div>
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+          <a role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu" aria-expanded="false"
             data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -30,7 +30,7 @@
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" *ngIf="show" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item">
               Home
@@ -153,9 +153,23 @@
                         </div>
                       </div>
                       <div class="media-right rem_mob">
-                        <button class="delete" (click)="removeItem(i)"></button>
+                        <button class="delete" (click)="removeItem(items.id)"></button>
                       </div>
                     </article>
+                    <div class="level is-mobile">
+                      <div class="level-left">
+                        <div class="level-item">
+                          Total
+                        </div>
+                      </div>
+                      <div class="level-right">
+                        <div class="level-item">
+                          <p>
+                            ${{items.total | number: '.2'}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
               </td>
               <td class="is-hidden-touch">
                 <article class="media">
