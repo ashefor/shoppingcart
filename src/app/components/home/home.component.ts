@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { CollectionService } from './../../services/collection.service';
 import { Component, OnInit } from '@angular/core';
 import { SwiperOptions } from 'swiper';
@@ -9,6 +10,8 @@ import { SwiperOptions } from 'swiper';
 })
 export class HomeComponent implements OnInit {
   allcollection = [];
+  cart: any[] = [];
+  length;
   config: SwiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
     navigation: {
@@ -41,15 +44,18 @@ export class HomeComponent implements OnInit {
       disableOnInteraction: false,
     },
   };
-  constructor(private cs: CollectionService) {
+  constructor(private cs: CollectionService, private ds: DataService) {
   }
 
   ngOnInit() {
     this.collectAll();
+    this.ds.currentItems.subscribe(items => this.cart = items);
+    this.length = this.cart.length;
   }
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
       this.allcollection = data
+      this.length = this.cart.length;
     })
   }
   showMenu(){
