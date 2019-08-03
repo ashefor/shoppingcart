@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   total;
   itemprice;
   subtotal;
+  promocode = false;
   constructor(private ds: DataService, private elem: ElementRef) { }
 
   ngOnInit() {
@@ -71,7 +72,10 @@ export class CartComponent implements OnInit {
     console.log(this.qty)
     this.total = (this.itemprice * this.qty).toFixed(2)
   }
-
+  enterpromo(){
+    this.promocode =! this.promocode;
+    console.log('sjow')
+  }
   showTot(){
     console.log(this.subtotal)
   }

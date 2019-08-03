@@ -10,6 +10,9 @@ import { FakeBackendService } from './fakebackend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CollectionService } from './services/collection.service';
 import { CartComponent } from './components/cart/cart.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper'
 
 
 @NgModule({
@@ -17,12 +20,14 @@ import { CartComponent } from './components/cart/cart.component';
     AppComponent,
     CollectionComponent,
     CartComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxUsefulSwiperModule,
     InMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   providers: [CollectionService],
