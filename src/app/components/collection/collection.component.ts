@@ -66,11 +66,10 @@ export class CollectionComponent implements OnInit {
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
       this.allcollection = data
-      console.log(this.allcollection)
     })
   }
 
-  showMenu(){
+  showMenu() {
     document.getElementById('burger').classList.toggle("is-active")
     document.getElementById('navbarBasicExample').classList.toggle('is-active')
   }
@@ -79,7 +78,7 @@ export class CollectionComponent implements OnInit {
     if ((this.size !== "small") && (this.size !== "medium") && (this.size !== "large")) {
       this.noSize = true;
     }
-    else{
+    else {
       this.ds.viewCart(this.cart)
       this.noSize = false;
       let arr = {
@@ -91,13 +90,11 @@ export class CollectionComponent implements OnInit {
         size: this.size,
         total: this.singleprice * this.qty
       }
-      // arr.push(this.singleproduct, newprice, this.qty)
       this.cart.push(arr)
       this.length = this.cart.length;
       setTimeout(() => {
         this.closeModal()
       }, 1000)
     }
-    console.log(this.cart)
   }
 }

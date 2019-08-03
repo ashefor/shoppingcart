@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
       this.allcollection = data
-      // console.log(this.allcollection)
     })
   }
   showMenu(){
