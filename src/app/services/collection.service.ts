@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { collection } from '../components/collection/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +21,7 @@ export class CollectionService {
   viewcart(){
     return this.http.get(this.viewCart).map(res => res)
   }
-  addtocart(
-    id: number,
-    price: number,
-    product_name: string,
-    qty: number,
-    ){
-    return this.http.post(this.viewCart, {id, price, product_name, qty})
+  addtocart(collection: collection){
+    return this.http.post(this.viewCart, {collection})
   }
 }

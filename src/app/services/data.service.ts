@@ -7,10 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
 
   private cartItems = new BehaviorSubject([])
+  cartlength = new BehaviorSubject(null)
   currentItems = this.cartItems.asObservable()
   constructor() { }
 
   viewCart(items: any[]){
     this.cartItems.next(items)
   }
+  
 }
