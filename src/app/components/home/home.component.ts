@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   }
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
-      this.allcollection = data
+      // this.allcollection = data
       this.length = this.cart.length;
     })
   }

@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '
 import { CollectionService } from 'src/app/services/collection.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { collection } from './collection';
+import { AuthService } from '../auth/auth.service';
 
 interface  sizes{
   small: string,
@@ -37,7 +38,7 @@ export class CollectionComponent implements OnInit {
     'small', 'medium', 'large'
   ]
   addForm: FormGroup
-  constructor(private cs: CollectionService, private ds: DataService, private formbuilder: FormBuilder) { }
+  constructor(private cs: CollectionService, private ds: DataService, private formbuilder: FormBuilder, private authservice: AuthService) { }
 
   ngOnInit() {
     this.initialiseForm()
@@ -50,6 +51,19 @@ export class CollectionComponent implements OnInit {
       quantity: [this.qty],
       jewelry: [null, Validators.required]
     })
+  }
+
+  get isLoggedIn(){
+    return this.authservice.isLoggedIn
+  }
+
+  get username(){
+    if(this.authservice.currentUser){
+      return this.authservice.currentUser.userName
+    }
+  }
+  logOut(){
+    this.authservice.logoutUSer()
   }
   selectSize(event) {
     if (event.target.value == "null") {

@@ -38,7 +38,7 @@ img{
     border-bottom: 2px solid #dbdbdb
 }
 .promocode{
-    color: #7795A3
+    color: #7795A3 !important
 }
 .promo{
     margin-top: 15px

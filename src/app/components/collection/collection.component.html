@@ -42,12 +42,15 @@
                     </div>
 
                     <div class="navbar-end">
+                            <a class="navbar-item" *ngIf="isLoggedIn">
+                                    Welcome {{username | titlecase}}
+                                </a>
                         <div class="navbar-item">
                             <div class="buttons">
-                                <a class="button is-primary">
-                                    <strong>Sign up</strong>
+                                <a *ngIf="isLoggedIn" class="button is-primary" (click)=logOut()>
+                                    <strong> Log Out</strong>
                                 </a>
-                                <a class="button is-info">
+                                <a *ngIf="!isLoggedIn" class="button is-info" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >
                                     Log in
                                 </a>
                                 <div class="is-hidden-touch field has-addons">

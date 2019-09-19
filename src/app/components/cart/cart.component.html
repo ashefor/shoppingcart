@@ -86,7 +86,7 @@
                       <h1 class="title">
                         No items in your cart
                       </h1>
-                      <a class="link" [routerLink]="['/collection']" routerLinkActive="router-link-active">
+                      <a class="link promocode" [routerLink]="['/collection']" routerLinkActive="router-link-active">
                         <h2 class="subtitle">
                           Continue Shopping
                         </h2>
@@ -128,7 +128,7 @@
                       </p>
                       <p>
                         <input type="number" value="{{items.newqty}}" min="1" (change)="chooseQty($event, i)"
-                          (keyup)="chooseQty($event, i)" style="width: 30%;">
+                          (keyup)="chooseQty($event, i)" style="width: 30%;" class="input is-medium">
                       </p>
                     </div>
                   </div>
@@ -178,7 +178,7 @@
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control" style="text-align: end">
-                  <input type="number" class="input" min="1" value="{{items.newqty}}" (change)="chooseQty($event, i)"
+                  <input type="number" class="input is-medium" min="1" value="{{items.newqty}}" (change)="chooseQty($event, i)"
                     (keyup)="chooseQty($event, i)" style="width: 30%; text-align:end">
                 </div>
               </td>

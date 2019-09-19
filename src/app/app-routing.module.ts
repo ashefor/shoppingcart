@@ -5,12 +5,11 @@ import { CollectionComponent } from './components/collection/collection.componen
 import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
-  {
-    path: 'collection', component: CollectionComponent,
-  },
-  {path: 'cart', component: CartComponent},
-  {path: 'home', component: HomeComponent },
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'collection', component: CollectionComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'auth', loadChildren: './components/auth/auth.module#AuthModule' }
 ];
 
 @NgModule({
