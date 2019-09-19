@@ -5,7 +5,6 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
             <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
-              <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
               <span class="icon">
                 <i class="fas fa-gem"></i>
               </span>
@@ -23,7 +22,7 @@
                 </p>
               </div>
             </div>
-            <a role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu"
+            <a #navmenu role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu"
               aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -31,7 +30,7 @@
             </a>
           </div>
 
-          <div id="navbarBasicExample" class="navbar-menu">
+          <div #menubtn id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
                 Home
@@ -92,13 +91,25 @@
             On Sale
           </p>
         </div>
-        <swiper [config]="config">
+        <!-- <swiper [config]="config">
           <div class="swiper-wrapper">
             <div class="swiper-slide" style="background: #f9fbfc"  *ngFor="let image of allcollection">
                 <img 
                 src="{{image.img}}" />
             </div>
           </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </swiper> -->
+        <swiper [config]="config">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background: #f9fbfc" *ngFor="let image of allcollection">
+              <img [src]="image.img" />
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+          <!-- Add Arrows -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </swiper>

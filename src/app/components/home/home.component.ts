@@ -1,6 +1,6 @@
 import { DataService } from './../../services/data.service';
 import { CollectionService } from './../../services/collection.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 
 @Component({
@@ -12,38 +12,42 @@ export class HomeComponent implements OnInit {
   allcollection = [];
   cart: any[] = [];
   length;
-  config: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
+  @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
+  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>;
+  config: any = {
+    pagination: {
+    el: '.swiper-pagination',
+    },
+    slidesPerView: 4,
+    paginationClickable: true,
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
     },
     spaceBetween: 30,
-    slidesPerView: 4,
-    loop: true,
     breakpoints: {
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      }
-    },
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-  };
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          450: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          }
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: true,
+        },
+};
   constructor(private cs: CollectionService, private ds: DataService) {
   }
 
@@ -59,7 +63,7 @@ export class HomeComponent implements OnInit {
     })
   }
   showMenu(){
-    document.getElementById('burger').classList.toggle("is-active")
-    document.getElementById('navbarBasicExample').classList.toggle('is-active')
+    this.navMenu.nativeElement.classList.toggle('is-active');
+    this.menuBtn.nativeElement.classList.toggle('is-active')
   }
 }
