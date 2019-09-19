@@ -14,6 +14,8 @@ export class CartComponent implements OnInit {
   noItems;
   qty;
   subtotal;
+  shippingcost: number;
+  totalAmount;
   promocode = false;
   constructor(private ds: DataService, private elem: ElementRef) { }
 
@@ -28,6 +30,7 @@ export class CartComponent implements OnInit {
       let newsum = +x.total
       sum += newsum
       this.subtotal = sum
+      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
     }
   }
   showMenu() {
@@ -49,6 +52,7 @@ export class CartComponent implements OnInit {
       let newsum = parseInt(y.total)
       sum += newsum
       this.subtotal = sum
+      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
     }
   }
 
@@ -60,7 +64,8 @@ export class CartComponent implements OnInit {
     for (let obj of this.cart) {
       let newsum = +obj.total
       sum += newsum
-      this.subtotal = sum
+      this.subtotal = sum;
+      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
     }
   }
 

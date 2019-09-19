@@ -37,6 +37,12 @@ img{
 .noItems{
     border-bottom: 2px solid #dbdbdb
 }
+.promocode{
+    color: #7795A3
+}
 .promo{
     margin-top: 15px
+}
+.input{
+    outline: none;
 }
