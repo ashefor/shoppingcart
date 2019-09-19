@@ -1,17 +1,27 @@
 import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { CollectionService } from 'src/app/services/collection.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { collection } from './collection';
 
+interface  sizes{
+  small: string,
+  medium: string,
+  large: string
+}
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.css']
 })
+
 export class CollectionComponent implements OnInit {
   qty: number = 1;
   cart: any[] = [];
   length;
+  sampleLength: any = 6;
+  @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
+  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>
   allcollection = [];
   oneitem = new Object();
   singleprice;
@@ -23,12 +33,23 @@ export class CollectionComponent implements OnInit {
   product_id: number;
   noSize;
   show = false;
-  constructor(private cs: CollectionService, private ds: DataService) { }
+  allsizes = [
+    'small', 'medium', 'large'
+  ]
+  addForm: FormGroup
+  constructor(private cs: CollectionService, private ds: DataService, private formbuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.initialiseForm()
     this.collectAll()
     this.ds.currentItems.subscribe(items => this.cart = items);
     this.length = this.cart.length;
+  }
+  initialiseForm(){
+    this.addForm = this.formbuilder.group({
+      quantity: [this.qty],
+      jewelry: [null, Validators.required]
+    })
   }
   selectSize(event) {
     if (event.target.value == "null") {
@@ -47,7 +68,7 @@ export class CollectionComponent implements OnInit {
     this.cs.viewMore(i).subscribe((data: any) => {
       this.singleprice = data.price;
       this.singleproduct = data.product_name;
-      this.singleimage = data.img
+      this.singleimage = data.img;
     })
     let modal = document.getElementById('modalEdicion')
     modal.classList.add('is-active')
@@ -60,7 +81,7 @@ export class CollectionComponent implements OnInit {
     this.singleproduct = ""
     this.singleimage = ""
     this.qty = 1;
-    this.size = null;
+    this.size === null;
   }
 
   collectAll() {
@@ -70,31 +91,30 @@ export class CollectionComponent implements OnInit {
   }
 
   showMenu() {
-    document.getElementById('burger').classList.toggle("is-active")
-    document.getElementById('navbarBasicExample').classList.toggle('is-active')
+    this.navMenu.nativeElement.classList.toggle('is-active');
+    this.menuBtn.nativeElement.classList.toggle('is-active')
+
   }
 
-  addthisToCart() {
-    if ((this.size !== "small") && (this.size !== "medium") && (this.size !== "large")) {
-      this.noSize = true;
+  addthisToCart(formvalue) {
+    let total = this.singleprice * formvalue.quantity
+   if(this.addForm.valid){
+    let arr: collection = {
+      id: this.product_id,
+      productname: this.singleproduct,
+      newamount: this.singleprice,
+      newqty: formvalue.quantity,
+      imgUrl: this.singleimage,
+      size: formvalue.jewelry,
+      total: total
     }
-    else {
-      this.ds.viewCart(this.cart)
-      this.noSize = false;
-      let arr = {
-        id: this.product_id,
-        productname: this.singleproduct,
-        newamount: this.singleprice,
-        newqty: this.qty,
-        imgUrl: this.singleimage,
-        size: this.size,
-        total: this.singleprice * this.qty
-      }
-      this.cart.push(arr)
-      this.length = this.cart.length;
-      setTimeout(() => {
-        this.closeModal()
-      }, 1000)
-    }
+    this.cart.push(arr)
+    this.ds.viewCart(this.cart)
+    this.length = this.cart.length;
+    setTimeout(() => {
+      this.addForm.reset({quantity: this.qty})
+      this.closeModal()
+    }, 1000)
+   }
   }
 }

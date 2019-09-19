@@ -11,9 +11,7 @@ p,h1,h2,h3,h4,h5,h6{
     margin: 0;
     padding: 0;
 }
-figure{
-    background: aliceblue
-}
+
 img{
     vertical-align: middle;
     width: 100%;
@@ -93,4 +91,78 @@ img{
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
+}
+button span{
+    font-size: 15px;
+}
+.control{
+    margin-top: 10px;
+}
+.addToCart{
+    margin-top: 50px;
+}
+.modal-image{
+    margin-right: 15px;
+}
+.modal-details{
+    margin-left: 15px
+}
+.modal-image, .modal-details{
+    width: 80%;
+    /* margin: auto; */
+}
+.modal-image .image{
+    border: 1px solid #cccccc
+}
+.masonry { 
+    column-gap: 1em;
+  }
+  
+.item { 
+    background-color: #eee;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+}
+
+
+  @media only screen and (min-width: 1024px) {
+    .masonry {
+      column-count: 4;
+    }
+  }
+  
+  /* Masonry on medium-sized screens */
+  @media only screen and (max-width: 1023px) and (min-width: 768px) {
+    .masonry {
+      column-count: 3;
+    }
+  }
+  
+  /* Masonry on small screens */
+  @media only screen and (max-width: 767px) and (min-width: 450px) {
+    .masonry {
+      column-count: 2;
+    }
+  }
+@media (max-width: 768px){
+    .modal-image, .modal-details{
+        margin: auto
+    }
+    .modal-details{
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 1024px){
+    .modal-image{
+        width: 60%;
+    }
+    .modal-details{
+        width: 40%;
+    }
+    .modal-content{
+        width: 900px;
+        height: 650px;
+    }
 }
