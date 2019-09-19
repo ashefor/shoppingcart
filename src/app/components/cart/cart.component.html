@@ -22,7 +22,7 @@
               </p>
             </div>
           </div>
-          <a role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu" aria-expanded="false"
+          <a #navmenu role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu" aria-expanded="false"
             data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -30,7 +30,7 @@
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div #menubtn id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active" >
               Home
@@ -71,7 +71,7 @@
         <i class="fas fa-angle-left"></i>
         Continue Shopping
       </a>
-      <section *ngIf="noItems" class="noItems">
+      <div *ngIf="noItems" class="noItems">
           <table class="table is-fullwidth">
             <thead class="hero-head">
               <tr>
@@ -81,7 +81,7 @@
             <tbody class="hero-body">
               <tr>
                 <td>
-                    <section class="hero is-medium is-bold">
+                    <div class="hero is-medium is-bold">
                         <div class="hero-body">
                           <div class="container has-text-centered">
                             <h1 class="title">
@@ -94,12 +94,12 @@
                             </a>
                           </div>
                         </div>
-                      </section>
+                      </div>
                 </td>
               </tr>
             </tbody>
           </table>
-        </section>
+        </div>
       <div *ngIf="!noItems">
         <table class="table is-fullwidth">
           <thead>
@@ -116,7 +116,6 @@
                   <article class="media">
                       <figure class="media-left">
                         <p class="image is-64x64">
-                          <!-- <img src="https://bulma.io/images/placeholders/128x128.png"> -->
                           <img src="{{items.imgUrl}}" alt="">
                         </p>
                       </figure>
@@ -129,7 +128,7 @@
                             <small>${{items.newamount | number: '.2'}}</small>
                           </p>
                           <p>
-                            <input type="number" value="{{items.newqty}}" min="1" style="width: 30%;">
+                            <input type="number" value="{{items.newqty}}" min="1" (change)="chooseQty($event, i)" (keyup)="chooseQty($event, i)" style="width: 30%;">
                           </p>
                         </div>
                       </div>
@@ -156,7 +155,6 @@
                 <article class="media">
                   <figure class="media-left">
                     <p class="image is-128x128">
-                      <!-- <img src="https://bulma.io/images/placeholders/128x128.png"> -->
                       <img src="{{items.imgUrl}}" alt="">
                     </p>
                   </figure>
@@ -180,7 +178,7 @@
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control" style="text-align: end">
-                  <input type="number" class="input" min="1" value="{{items.newqty}}" (change)="chooseQty($event)" (keyup)="chooseQty($event)" style="width: 30%; text-align:end">
+                  <input type="number" class="input" min="1" value="{{items.newqty}}" (change)="chooseQty($event, i)" (keyup)="chooseQty($event, i)" style="width: 30%; text-align:end">
                 </div>
               </td>
               <td class="righttext is-hidden-touch">

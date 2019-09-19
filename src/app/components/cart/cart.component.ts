@@ -1,5 +1,5 @@
 import { DataService } from './../../services/data.service';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -9,11 +9,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 export class CartComponent implements OnInit {
   cart: any[];
   length;
+  @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
+  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>
   noItems;
-  newamount = [];
   qty;
-  total;
-  itemprice;
   subtotal;
   promocode = false;
   constructor(private ds: DataService, private elem: ElementRef) { }
@@ -21,62 +20,54 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.ds.currentItems.subscribe(items => this.cart = items)
     this.length = this.cart.length
-    console.log(this.cart)
-    if(this.length < 1){
+    if (this.length < 1) {
       this.noItems = true;
     }
     let sum = 0;
-    for(let x of this.cart){
-      // console.log(x)
-      this.itemprice = x.newamount
-      this.total = (x.newamount * x.newqty).toFixed(2)
-      let pricearr: Array<any> = new Array()
-      let price = (x.newamount * x.newqty).toFixed(2)
-      pricearr.push(price)
-      this.newamount.push(pricearr)
-      console.log(this.newamount)
-      let newsum = parseInt(x.total)
-      sum+= newsum
+    for (let x of this.cart) {
+      let newsum = +x.total
+      sum += newsum
       this.subtotal = sum
-      console.log(sum)
     }
   }
-  showMenu(){
-    document.getElementById('burger').classList.toggle("is-active")
-    document.getElementById('navbarBasicExample').classList.toggle('is-active')
+  showMenu() {
+    this.navMenu.nativeElement.classList.toggle('is-active');
+    this.menuBtn.nativeElement.classList.toggle('is-active')
   }
 
-  removeItem(i){
-    console.log(i)
-    console.log(this.cart)
+  removeItem(i) {
     let index = this.cart.findIndex(item => item.id == i)
-    console.log(index)
-    if(index > -1){
+    if (index > -1) {
       this.cart.splice(index, 1)
     }
     this.length = this.cart.length
-    if(this.length < 1){
+    if (this.length < 1) {
       this.noItems = true;
     }
     let sum = 0;
-    for(let y of this.cart){
-    let newsum = parseInt(y.total)
-    sum+= newsum
-    this.subtotal = sum
-    // console.log(sum)
+    for (let y of this.cart) {
+      let newsum = parseInt(y.total)
+      sum += newsum
+      this.subtotal = sum
     }
   }
 
-  chooseQty(e) {
+  chooseQty(e, i) {
     this.qty = e.target.value
-    console.log(this.qty)
-    this.total = (this.itemprice * this.qty).toFixed(2)
+    this.cart[i].newqty = this.qty;
+    this.cart[i].total = (this.cart[i].newamount * this.qty).toFixed(2)
+    let sum = 0;
+    for (let obj of this.cart) {
+      let newsum = +obj.total
+      sum += newsum
+      this.subtotal = sum
+    }
   }
-  enterpromo(){
-    this.promocode =! this.promocode;
-    console.log('sjow')
+
+  enterpromo() {
+    this.promocode = !this.promocode;
   }
-  showTot(){
+  showTot() {
     console.log(this.subtotal)
   }
 
