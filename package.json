@@ -24,7 +24,7 @@
     "bulma": "^0.7.5",
     "core-js": "^2.5.4",
     "faker": "^4.1.0",
-    "ngx-useful-swiper": "^8.0.1-beta.2",
+    "ngx-useful-swiper": "^8.0.1",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.5.2",
     "swiper": "^4.5.0",
