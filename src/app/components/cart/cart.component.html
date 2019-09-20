@@ -62,8 +62,8 @@
                         <small>${{items.newamount | number: '.2'}}</small>
                       </p>
                       <p>
-                        <input type="number" value="{{items.newqty}}" min="1" (change)="chooseQty($event, i)"
-                          (keyup)="chooseQty($event, i)" style="width: 30%;" class="input is-medium">
+                        <input type="number" class="input is-medium" value="{{items.newqty}}" min="1" (change)="chooseQty($event, i)"
+                          (keyup)="chooseQty($event, i)" style="width: 30%;">
                       </p>
                     </div>
                   </div>

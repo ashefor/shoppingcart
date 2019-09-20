@@ -33,10 +33,6 @@ export class CartComponent implements OnInit {
       this.totalAmount = (+this.subtotal + +(this.shippingcost ? this.shippingcost : 0)).toFixed(2)
     }
   }
-  showMenu() {
-    this.navMenu.nativeElement.classList.toggle('is-active');
-    this.menuBtn.nativeElement.classList.toggle('is-active')
-  }
 
   removeItem(i) {
     let index = this.cart.findIndex(item => item.id == i)

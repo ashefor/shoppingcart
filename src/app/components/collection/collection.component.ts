@@ -106,12 +106,6 @@ export class CollectionComponent implements OnInit {
     })
   }
 
-  showMenu() {
-    this.navMenu.nativeElement.classList.toggle('is-active');
-    this.menuBtn.nativeElement.classList.toggle('is-active')
-
-  }
-
   addthisToCart(formvalue) {
     let total = this.singleprice * formvalue.quantity
     if (this.addForm.valid) {

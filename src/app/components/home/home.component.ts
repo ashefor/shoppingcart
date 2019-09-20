@@ -61,8 +61,4 @@ export class HomeComponent implements OnInit {
       this.length = this.cart.length;
     })
   }
-  showMenu() {
-    this.navMenu.nativeElement.classList.toggle('is-active');
-    this.menuBtn.nativeElement.classList.toggle('is-active')
-  }
 }
