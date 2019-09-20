@@ -1,71 +1,6 @@
 <div>
   <div class="wrapper">
     <div class="section">
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
-            <span class="icon">
-              <i class="fas fa-gem"></i>
-            </span>
-            <span class="">ShopMart</span>
-          </a>
-          <div class="is-hidden-desktop moveright">
-            <div class="field has-addons">
-              <p class="control">
-                <a class="button is-large" [routerLink]="['/cart']" routerLinkActive="router-link-active">
-                  <span class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                  </span>
-                  <span class="tag is-primary has-text-weight-bold">{{length? length: '0'}}</span>
-                </a>
-              </p>
-            </div>
-          </div>
-          <a #navmenu role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu"
-            aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div #menubtn id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
-              Home
-            </a>
-
-            <a class="navbar-item" [routerLink]="['/collection']" routerLinkActive="router-link-active">
-              Collection
-            </a>
-          </div>
-
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-info">
-                  Log in
-                </a>
-                <div class="is-hidden-touch field has-addons">
-                  <p class="control">
-                    <a class="button is-light" [routerLink]="['/cart']" routerLinkActive="router-link-active">
-                      <span class="icon">
-                        <i class="fas fa-shopping-cart"></i>
-                      </span>
-                      <span class="tag has-text-weight-bold">{{length? length: '0'}}</span>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div class="section">
       <a class="link" *ngIf="!noItems" [routerLink]="['/collection']" routerLinkActive="router-link-active">
         <i class="fas fa-angle-left"></i>
         Continue Shopping
@@ -178,8 +113,8 @@
               </td>
               <td class="righttext is-hidden-touch">
                 <div class="control" style="text-align: end">
-                  <input type="number" class="input is-medium" min="1" value="{{items.newqty}}" (change)="chooseQty($event, i)"
-                    (keyup)="chooseQty($event, i)" style="width: 30%; text-align:end">
+                  <input type="number" class="input is-medium" min="1" value="{{items.newqty}}"
+                    (change)="chooseQty($event, i)" (keyup)="chooseQty($event, i)" style="width: 30%; text-align:end">
                 </div>
               </td>
               <td class="righttext is-hidden-touch">
@@ -197,7 +132,7 @@
                 <span class="icon">
                   <i class="fas fa-tag"></i>
                 </span> <span>
-                    Click to Enter a promo code
+                  Click to Enter a promo code
                 </span>
               </a>
               <div class="field has-addons promo" *ngIf="promocode">
@@ -207,7 +142,7 @@
                 <div class="control">
                   <a class="button  is-info is-outlined is-medium">
                     <span>
-                        Apply
+                      Apply
                     </span>
                   </a>
                 </div>
@@ -242,7 +177,7 @@
                 <div class="level-right">
                   <div class="level-item">
                     <p>
-                     {{shippingcost? shippingcost: 'Free'}}
+                      {{shippingcost? shippingcost: 'Free'}}
                     </p>
                   </div>
                 </div>
@@ -251,26 +186,26 @@
                 <hr>
               </div>
               <div class="level is-mobile">
-                  <div class="level-left">
-  
-                    <div class="level-item">
-                      <p>
-                        Total
-                      </p>
-                    </div>
-                  </div>
-                  <div class="level-right">
-                    <div class="level-item">
-                      <p>
-                          ${{totalAmount | number: '.2'}}
-                      </p>
-                    </div>
+                <div class="level-left">
+
+                  <div class="level-item">
+                    <p>
+                      Total
+                    </p>
                   </div>
                 </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <p>
+                      ${{totalAmount | number: '.2'}}
+                    </p>
+                  </div>
+                </div>
+              </div>
               <button class="button is-fullwidth is-medium is-dark">
                 <span class="icon">
                   <i class="fas fa-shopping-bag"></i>
-                </span> 
+                </span>
                 <span>
                   Checkout
                 </span>

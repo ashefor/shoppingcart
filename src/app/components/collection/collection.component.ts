@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { collection } from './collection';
 import { AuthService } from '../auth/auth.service';
 
-interface  sizes{
+interface sizes {
   small: string,
   medium: string,
   large: string
@@ -20,9 +20,10 @@ export class CollectionComponent implements OnInit {
   qty: number = 1;
   cart: any[] = [];
   length;
-  sampleLength: any = 6;
+  sampleLength: number = 6;
   @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
   @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>
+  @Output() cartLength = new EventEmitter()
   allcollection = [];
   oneitem = new Object();
   singleprice;
@@ -45,24 +46,25 @@ export class CollectionComponent implements OnInit {
     this.collectAll()
     this.ds.currentItems.subscribe(items => this.cart = items);
     this.length = this.cart.length;
+    this.sampleLength = this.cart.length
   }
-  initialiseForm(){
+  initialiseForm() {
     this.addForm = this.formbuilder.group({
       quantity: [this.qty],
       jewelry: [null, Validators.required]
     })
   }
 
-  get isLoggedIn(){
+  get isLoggedIn() {
     return this.authservice.isLoggedIn
   }
 
-  get username(){
-    if(this.authservice.currentUser){
+  get username() {
+    if (this.authservice.currentUser) {
       return this.authservice.currentUser.userName
     }
   }
-  logOut(){
+  logOut() {
     this.authservice.logoutUSer()
   }
   selectSize(event) {
@@ -112,23 +114,24 @@ export class CollectionComponent implements OnInit {
 
   addthisToCart(formvalue) {
     let total = this.singleprice * formvalue.quantity
-   if(this.addForm.valid){
-    let arr: collection = {
-      id: this.product_id,
-      productname: this.singleproduct,
-      newamount: this.singleprice,
-      newqty: formvalue.quantity,
-      imgUrl: this.singleimage,
-      size: formvalue.jewelry,
-      total: total
+    if (this.addForm.valid) {
+      let arr: collection = {
+        id: this.product_id,
+        productname: this.singleproduct,
+        newamount: this.singleprice,
+        newqty: formvalue.quantity,
+        imgUrl: this.singleimage,
+        size: formvalue.jewelry,
+        total: total
+      }
+      this.cart.push(arr)
+      this.ds.viewCart(this.cart)
+      this.length = this.cart.length;
+      this.cartLength.emit(this.length)
+      setTimeout(() => {
+        this.addForm.reset({ quantity: this.qty })
+        this.closeModal()
+      }, 1000)
     }
-    this.cart.push(arr)
-    this.ds.viewCart(this.cart)
-    this.length = this.cart.length;
-    setTimeout(() => {
-      this.addForm.reset({quantity: this.qty})
-      this.closeModal()
-    }, 1000)
-   }
   }
 }

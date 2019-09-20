@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
       let newsum = +x.total
       sum += newsum
       this.subtotal = sum
-      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
+      this.totalAmount = (+this.subtotal + +(this.shippingcost ? this.shippingcost : 0)).toFixed(2)
     }
   }
   showMenu() {
@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
       let newsum = parseInt(y.total)
       sum += newsum
       this.subtotal = sum
-      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
+      this.totalAmount = (+this.subtotal + +(this.shippingcost ? this.shippingcost : 0)).toFixed(2)
     }
   }
 
@@ -65,15 +65,11 @@ export class CartComponent implements OnInit {
       let newsum = +obj.total
       sum += newsum
       this.subtotal = sum;
-      this.totalAmount = (+this.subtotal + +(this.shippingcost? this.shippingcost: 0)).toFixed(2)
+      this.totalAmount = (+this.subtotal + +(this.shippingcost ? this.shippingcost : 0)).toFixed(2)
     }
   }
 
   enterpromo() {
     this.promocode = !this.promocode;
   }
-  showTot() {
-    console.log(this.subtotal)
-  }
-
 }

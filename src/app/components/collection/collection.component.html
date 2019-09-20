@@ -1,76 +1,6 @@
 <div>
     <div class="wrapper">
         <div class="section">
-            <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
-                        <span class="icon">
-                            <i class="fas fa-gem"></i>
-                        </span>
-                        <span class="">ShopMart</span>
-                    </a>
-                    <div class="is-hidden-desktop moveright">
-                        <div class="field has-addons">
-                            <p class="control">
-                                <a class="button is-large" [routerLink]="['/cart']"
-                                    routerLinkActive="router-link-active">
-                                    <span class="icon">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </span>
-                                    <span class="tag is-primary has-text-weight-bold">{{length? length: '0'}}</span>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                    <a #navmenu role="button" class="navbar-burger burger" (click)="showMenu()" id="burger" aria-label="menu"
-                        aria-expanded="false" data-target="navbarBasicExample">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
-
-                <div #menubtn id="navbarBasicExample" class="navbar-menu">
-                    <div class="navbar-start">
-                        <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
-                            Home
-                        </a>
-
-                        <a class="navbar-item" [routerLink]="['/collection']" routerLinkActive="router-link-active">
-                            Collection
-                        </a>
-                    </div>
-
-                    <div class="navbar-end">
-                            <a class="navbar-item" *ngIf="isLoggedIn">
-                                    Welcome {{username | titlecase}}
-                                </a>
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <a *ngIf="isLoggedIn" class="button is-primary" (click)=logOut()>
-                                    <strong> Log Out</strong>
-                                </a>
-                                <a *ngIf="!isLoggedIn" class="button is-info" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >
-                                    Log in
-                                </a>
-                                <div class="is-hidden-touch field has-addons">
-                                    <p class="control">
-                                        <a class="button is-light" [routerLink]="['/cart']"
-                                            routerLinkActive="router-link-active">
-                                            <span class="icon">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </span>
-                                            <span class="tag has-text-weight-bold">{{length? length: '0'}}</span>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="section">
             <div class="masonry is-multiline">
                 <div *ngFor="let item of allcollection; let i = index" class=" single_item"
                     (click)="openModal(item.id)">
@@ -122,7 +52,8 @@
                                             <div class="select is-fullwidth is-medium">
                                                 <select id="selectsize" formControlName="jewelry" required>
                                                     <option value="null" [disabled]="true">Select Category</option>
-                                                    <option class="is-uppercase" *ngFor="let sizes of allsizes" [value]="sizes">{{sizes | titlecase}}
+                                                    <option class="is-uppercase" *ngFor="let sizes of allsizes"
+                                                        [value]="sizes">{{sizes | titlecase}}
                                                     </option>
                                                 </select>
                                             </div>

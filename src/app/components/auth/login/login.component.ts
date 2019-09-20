@@ -28,13 +28,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  initialiseForm(){
+  initialiseForm() {
     this.loginForm = this.formbuilder.group({
       username: [''],
       password: ['']
     })
   }
-  signIn(userCredentials){
+  signIn(userCredentials) {
     this.authservice.loginUser(userCredentials.username, userCredentials.password);
     this.router.navigateByUrl('/collection')
   }

@@ -1,4 +1,75 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<div class="wrapper">
+    <div class="section">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
+                    <span class="icon">
+                        <i class="fas fa-gem"></i>
+                    </span>
+                    <span class="">ShopMart</span>
+                </a>
+                <div class="is-hidden-desktop moveright">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="button is-large" [routerLink]="['/cart']" routerLinkActive="router-link-active">
+                                <span class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                                <span class="tag is-primary has-text-weight-bold">{{length? length: '0'}}</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <a #navmenu role="button" class="navbar-burger burger" (click)="showMenu()" id="burger"
+                    aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
 
-<router-outlet></router-outlet>
+            <div #menubtn id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" [routerLink]="['/home']" routerLinkActive="router-link-active">
+                        Home
+                    </a>
+
+                    <a class="navbar-item" [routerLink]="['/collection']" routerLinkActive="router-link-active">
+                        Collection
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <a class="navbar-item" *ngIf="isLoggedIn">
+                        Welcome {{username | titlecase}}
+                    </a>
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a *ngIf="isLoggedIn" class="button is-primary" (click)=logOut()>
+                                <strong> Log Out</strong>
+                            </a>
+                            <a *ngIf="!isLoggedIn" class="button is-info" [routerLink]="['/auth/login']"
+                                routerLinkActive="router-link-active">
+                                Log in
+                            </a>
+                            <div class="is-hidden-touch field has-addons">
+                                <p class="control">
+                                    <a class="button is-light" [routerLink]="['/cart']"
+                                        routerLinkActive="router-link-active">
+                                        <span class="icon">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </span>
+                                        <span class="tag has-text-weight-bold">{{length? length: '0'}}</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
