@@ -26,7 +26,8 @@ export class AppComponent {
   }
 
   logOut(){
-    this.authservice.logoutUSer()
+    this.authservice.logoutUSer();
+    this.showMenu()
   }
 
   showMenu(){
