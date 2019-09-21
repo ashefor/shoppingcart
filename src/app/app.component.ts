@@ -37,5 +37,8 @@ export class AppComponent {
     componentReference.ds.currentItems.subscribe(data=>{
       this.length = data.length
     })
+    if(this.menuBtn.nativeElement.classList.contains('is-active')){
+      this.showMenu()
+    }
   }
 }
