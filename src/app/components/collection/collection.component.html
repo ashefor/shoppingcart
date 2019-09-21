@@ -19,8 +19,9 @@
                 </div>
                 <div class="modal" id="modalEdicion">
                     <div (click)="closeModal()" class="modal-background"></div>
-                    <div class="modal-content box">
-                        <div class="is-flex-tablet">
+                    <div class="modal-content box is-relative">
+                            <div *ngIf="loadItems" class="spinloader"></div>
+                        <div *ngIf="!loadItems" class="is-flex-tablet">
                             <div class="modal-image">
                                 <figure *ngIf="singleimage" class="image is-1by1">
                                     <img [src]="singleimage" alt="">
@@ -60,7 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="field addToCart">
-                                        <button class="button is-primary is-large is-uppercase is-fullwidth"
+                                        <button #loading class="button is-primary is-large is-uppercase is-fullwidth"
                                             [disabled]="addForm.invalid" type="submit">
                                             <span>
                                                 Add to cart

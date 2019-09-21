@@ -19,22 +19,16 @@ interface sizes {
 export class CollectionComponent implements OnInit {
   qty: number = 1;
   cart: any[] = [];
-  length;
-  sampleLength: number = 6;
   @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
-  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>
-  @Output() cartLength = new EventEmitter()
+  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>;
+  @ViewChild('loading') isLoading: ElementRef<HTMLElement>
   allcollection = [];
-  oneitem = new Object();
+  loadItems: boolean;
   singleprice;
   singleproduct;
   singleimage;
-  private allimgs = [];
-  prices: number;
-  size = null
   product_id: number;
   noSize;
-  show = false;
   allsizes = [
     'small', 'medium', 'large'
   ]
@@ -45,8 +39,6 @@ export class CollectionComponent implements OnInit {
     this.initialiseForm()
     this.collectAll()
     this.ds.currentItems.subscribe(items => this.cart = items);
-    this.length = this.cart.length;
-    this.sampleLength = this.cart.length
   }
   initialiseForm() {
     this.addForm = this.formbuilder.group({
@@ -67,21 +59,10 @@ export class CollectionComponent implements OnInit {
   logOut() {
     this.authservice.logoutUSer()
   }
-  selectSize(event) {
-    if (event.target.value == "null") {
-      this.noSize = true;
-    }
-    else {
-      this.noSize = false;
-    }
-    this.size = event.target.value
-  }
-
-  chooseQty(e) {
-    this.qty = e.target.value
-  }
   openModal(i) {
+    this.loadItems = true;
     this.cs.viewMore(i).subscribe((data: any) => {
+      this.loadItems = false;
       this.singleprice = data.price;
       this.singleproduct = data.product_name;
       this.singleimage = data.img;
@@ -96,8 +77,7 @@ export class CollectionComponent implements OnInit {
     this.singleprice = "";
     this.singleproduct = ""
     this.singleimage = ""
-    this.qty = 1;
-    this.size === null;
+    this.addForm.reset({quantity: this.qty})
   }
 
   collectAll() {
@@ -109,7 +89,7 @@ export class CollectionComponent implements OnInit {
   addthisToCart(formvalue) {
     let total = this.singleprice * formvalue.quantity
     if (this.addForm.valid) {
-      let arr: collection = {
+      let collectiondata: collection = {
         id: this.product_id,
         productname: this.singleproduct,
         newamount: this.singleprice,
@@ -118,12 +98,11 @@ export class CollectionComponent implements OnInit {
         size: formvalue.jewelry,
         total: total
       }
-      this.cart.push(arr)
+      this.cart.push(collectiondata)
       this.ds.viewCart(this.cart)
-      this.length = this.cart.length;
-      this.cartLength.emit(this.length)
+      this.isLoading.nativeElement.classList.toggle('is-loading')
       setTimeout(() => {
-        this.addForm.reset({ quantity: this.qty })
+        this.isLoading.nativeElement.classList.toggle('is-loading')
         this.closeModal()
       }, 1000)
     }

@@ -44,7 +44,7 @@
               <th class="righttext is-hidden-touch">Total</th>
             </tr>
           </thead>
-          <tbody *ngFor="let items of cart; let i = index">
+          <tbody *ngFor="let items of cart; let  i = index">
             <tr>
               <td class="is-hidden-desktop">
                 <article class="media">
@@ -56,7 +56,7 @@
                   <div class="media-content">
                     <div class="content">
                       <p>
-                        <strong>{{items.productname}}</strong>
+                        <strong> {{items.productname}}</strong>
                       </p>
                       <p>
                         <small>${{items.newamount | number: '.2'}}</small>
@@ -68,7 +68,7 @@
                     </div>
                   </div>
                   <div class="media-right rem_mob">
-                    <button class="delete" (click)="removeItem(items.id)"></button>
+                    <button class="delete" (click)="removeItem(i)"></button>
                   </div>
                 </article>
                 <div class="level is-mobile">
@@ -101,7 +101,7 @@
                       <p class="is-size-6 has-text-weight-light">
                         {{items.size | uppercase}}
                       </p>
-                      <a class="link has-text-danger has-text-weight-light" (click)="removeItem(items.id)">
+                      <a class="link has-text-danger has-text-weight-light" (click)="removeItem(i)">
                         Remove item
                       </a>
                     </div>

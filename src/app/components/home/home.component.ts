@@ -53,12 +53,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.collectAll();
-    this.ds.currentItems.subscribe(items => this.cart = items);
-    this.length = this.cart.length;
   }
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
-      this.length = this.cart.length;
+      this.allcollection = data
     })
   }
 }

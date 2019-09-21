@@ -17,12 +17,11 @@ export class CartComponent implements OnInit {
   shippingcost: number;
   totalAmount;
   promocode = false;
-  constructor(private ds: DataService, private elem: ElementRef) { }
+  constructor(private ds: DataService) { }
 
   ngOnInit() {
     this.ds.currentItems.subscribe(items => this.cart = items)
-    this.length = this.cart.length
-    if (this.length < 1) {
+    if (this.cart.length < 1) {
       this.noItems = true;
     }
     let sum = 0;
@@ -35,17 +34,15 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(i) {
-    let index = this.cart.findIndex(item => item.id == i)
-    if (index > -1) {
-      this.cart.splice(index, 1)
-    }
-    this.length = this.cart.length
-    if (this.length < 1) {
+    this.cart.splice(i, 1)
+    
+    this.ds.viewCart(this.cart)
+    if (this.cart.length < 1) {
       this.noItems = true;
     }
     let sum = 0;
     for (let y of this.cart) {
-      let newsum = parseInt(y.total)
+      let newsum = +y.total
       sum += newsum
       this.subtotal = sum
       this.totalAmount = (+this.subtotal + +(this.shippingcost ? this.shippingcost : 0)).toFixed(2)
