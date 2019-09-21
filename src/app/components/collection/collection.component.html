@@ -1,7 +1,8 @@
 <div>
     <div class="wrapper">
         <div class="section">
-            <div class="masonry is-multiline">
+                <div *ngIf="showCollection" class="spinloader"></div>
+            <div *ngIf="!showCollection" class="masonry is-multiline">
                 <div *ngFor="let item of allcollection; let i = index" class=" single_item"
                     (click)="openModal(item.id)">
                     <div class="item image is-256x256">

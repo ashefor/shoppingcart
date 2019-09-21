@@ -24,6 +24,7 @@ export class CollectionComponent implements OnInit {
   @ViewChild('loading') isLoading: ElementRef<HTMLElement>
   allcollection = [];
   loadItems: boolean;
+  showCollection: boolean;
   singleprice;
   singleproduct;
   singleimage;
@@ -36,6 +37,7 @@ export class CollectionComponent implements OnInit {
   constructor(private cs: CollectionService, private ds: DataService, private formbuilder: FormBuilder, private authservice: AuthService) { }
 
   ngOnInit() {
+    this.showCollection = true;
     this.initialiseForm()
     this.collectAll()
     this.ds.currentItems.subscribe(items => this.cart = items);
@@ -82,7 +84,8 @@ export class CollectionComponent implements OnInit {
 
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
-      this.allcollection = data
+      this.showCollection = false;
+      this.allcollection = data;
     })
   }
 
