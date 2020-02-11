@@ -63,7 +63,7 @@
                       </p>
                       <p>
                         <input type="number" class="input is-medium" value="{{items.newqty}}" min="1" (change)="chooseQty($event, i)"
-                          (keyup)="chooseQty($event, i)" style="width: 30%;">
+                          (keyup)="chooseQty($event, i)" style="width: 50%;">
                       </p>
                     </div>
                   </div>
@@ -114,10 +114,10 @@
               <td class="righttext is-hidden-touch">
                 <div class="control" style="text-align: end">
                   <input type="number" class="input is-medium" min="1" value="{{items.newqty}}"
-                    (change)="chooseQty($event, i)" (keyup)="chooseQty($event, i)" style="width: 30%; text-align:end">
+                    (change)="chooseQty($event, i)" (keyup)="chooseQty($event, i)" style="width: 50%; text-align:end">
                 </div>
               </td>
-              <td class="righttext is-hidden-touch">
+              <td class="righttext is-hidden-touch" style="width: 200px;">
                 <p>
                   ${{items.total | number: '.2'}}
                 </p>

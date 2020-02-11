@@ -25,6 +25,7 @@
     "bulma": "^0.8.0",
     "core-js": "^3.6.4",
     "faker": "^4.1.0",
+    "font-awesome": "^4.7.0",
     "ngx-useful-swiper": "^9.0.1",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.5.4",

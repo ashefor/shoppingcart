@@ -159,13 +159,6 @@ form .control {
   margin-top: 10px;
 }
 
-/* .addToCart, .ske-btn {
-  position: absolute;
-    width: 100%;
-    bottom: 0;
-    
-} */
-
 .modal-image {
   margin-right: 15px;
 }
@@ -200,42 +193,49 @@ form .control {
  .skeleton .field h3,
  .skeleton .field h2,
  .skeleton .field p,
- .skeleton .ske-btn {
+ .skeleton .ske-btn, 
+ img:empty, h2:empty, h3:empty, h4:empty, h5:empty, p:empty {
       animation: loading 1.7s infinite linear;
       background: #dedfe1;
       background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
       background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
       background-repeat: no-repeat;
 }
-
-.skeleton .field h4{
-    height: 30px;
-    width: 100%;
-    /* margin-bottom: 18px; */
-}
-
-.skeleton .field h3{
-    height: 30px;
+img:empty.collectionImg{
+    min-height: 226px;
+  }
+  h4:empty.title {
+    height: 20px;
+    width: 80%;
+  }
+  h4:empty.subtitle {
+    height: 20px;
     width: 40%;
-    /* margin-bottom: 18px; */
-}
-.skeleton .field h2{
-    height: 30px;
-    width: 60%;
-    /* margin-bottom: 18px; */
-}
-
-.skeleton .field p{
+  }
+  p:empty.subtitle {
+    height: 20px;
+    width: 50%;
+  }
+  h3:empty.label {
+    height: 20px;
+    width: 30%;
+  }
+  h3:empty.qty {
+    height: 50px;
+    width: 30%;
+  }
+  h3:empty.size {
+    height: 20px;
+    width: 50%;
+  }
+  h3:empty.category {
     height: 50px;
     width: 100%;
-    /* margin-bottom: 18px; */
-}
-.skeleton .ske-btn {
+  }
+ .ske-btn:empty {
     height: 50px;
     width: 100%;
 }
-
-
 @keyframes loading {
     0% {
       background-position: -100px;
@@ -292,8 +292,4 @@ form .control {
     width: 40%;
   }
 
-  .modal-content {
-    /* width: 900px;
-        height: 650px; */
-  }
 }

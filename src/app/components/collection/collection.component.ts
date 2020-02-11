@@ -5,11 +5,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { collection } from './collection';
 import { AuthService } from '../auth/auth.service';
 
-interface sizes {
-  small: string,
-  medium: string,
-  large: string
-}
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
@@ -17,18 +12,19 @@ interface sizes {
 })
 
 export class CollectionComponent implements OnInit {
-  qty: number = 1;
+  qty = 1;
   cart: any[] = [];
   @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>;
   @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>;
   @ViewChild('loading') isLoading: ElementRef<HTMLElement>
   allcollection = [];
   singleItemLoaded = false;
-  showCollection: boolean;
+  collectionLoaded = false;
+  skeletonCollections = new Array(12).fill(1);
   singleprice;
   singleproduct;
   singleimage;
-  product_id: number;
+  productId: number;
   noSize;
   allsizes = [
     'small', 'medium', 'large'
@@ -38,7 +34,6 @@ export class CollectionComponent implements OnInit {
     private ds: DataService, private formbuilder: FormBuilder, private authservice: AuthService) { }
 
   ngOnInit() {
-    this.showCollection = true;
     this.initialiseForm()
     this.collectAll()
     this.ds.currentItems.subscribe(items => this.cart = items);
@@ -63,16 +58,15 @@ export class CollectionComponent implements OnInit {
     this.authservice.logoutUSer()
   }
   openModal(i) {
-    // this.singleItemLoaded = true;
     this.cs.viewMore(i).subscribe((data: any) => {
       this.singleprice = data.price;
       this.singleproduct = data.product_name;
       this.singleimage = data.img;
       this.singleItemLoaded = true;
     })
-    let modal = document.getElementById('modalEdicion')
+    const modal = document.getElementById('modalEdicion')
     modal.classList.add('is-active')
-    this.product_id = i;
+    this.productId = i;
   }
 
   closeModal() {
@@ -81,27 +75,29 @@ export class CollectionComponent implements OnInit {
     this.singleproduct = '';
     this.singleimage = '';
     this.singleItemLoaded = false;
-    this.addForm.reset({quantity: this.qty})
+    this.addForm.reset({ quantity: this.qty })
   }
 
   collectAll() {
     this.cs.getCollections().subscribe((data: any) => {
-      this.showCollection = false;
-      this.allcollection = data;
+      if (data) {
+        this.allcollection = data;
+        this.collectionLoaded = true;
+      }
     })
   }
 
   addthisToCart(formvalue) {
-    let total = this.singleprice * formvalue.quantity
+    const total = this.singleprice * formvalue.quantity
     if (this.addForm.valid) {
-      let collectiondata: collection = {
-        id: this.product_id,
+      const collectiondata: collection = {
+        id: this.productId,
         productname: this.singleproduct,
         newamount: this.singleprice,
         newqty: formvalue.quantity,
         imgUrl: this.singleimage,
         size: formvalue.jewelry,
-        total: total
+        total
       }
       this.cart.push(collectiondata)
       this.ds.viewCart(this.cart)
