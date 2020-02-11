@@ -23,7 +23,7 @@ export class CollectionComponent implements OnInit {
   @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>;
   @ViewChild('loading') isLoading: ElementRef<HTMLElement>
   allcollection = [];
-  loadItems: boolean;
+  singleItemLoaded = false;
   showCollection: boolean;
   singleprice;
   singleproduct;
@@ -34,7 +34,8 @@ export class CollectionComponent implements OnInit {
     'small', 'medium', 'large'
   ]
   addForm: FormGroup
-  constructor(private cs: CollectionService, private ds: DataService, private formbuilder: FormBuilder, private authservice: AuthService) { }
+  constructor(private cs: CollectionService,
+    private ds: DataService, private formbuilder: FormBuilder, private authservice: AuthService) { }
 
   ngOnInit() {
     this.showCollection = true;
@@ -62,12 +63,12 @@ export class CollectionComponent implements OnInit {
     this.authservice.logoutUSer()
   }
   openModal(i) {
-    this.loadItems = true;
+    // this.singleItemLoaded = true;
     this.cs.viewMore(i).subscribe((data: any) => {
-      this.loadItems = false;
       this.singleprice = data.price;
       this.singleproduct = data.product_name;
       this.singleimage = data.img;
+      this.singleItemLoaded = true;
     })
     let modal = document.getElementById('modalEdicion')
     modal.classList.add('is-active')
@@ -76,9 +77,10 @@ export class CollectionComponent implements OnInit {
 
   closeModal() {
     document.getElementById('modalEdicion').classList.remove('is-active')
-    this.singleprice = "";
-    this.singleproduct = ""
-    this.singleimage = ""
+    this.singleprice = '';
+    this.singleproduct = '';
+    this.singleimage = '';
+    this.singleItemLoaded = false;
     this.addForm.reset({quantity: this.qty})
   }
 

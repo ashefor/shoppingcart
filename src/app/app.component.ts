@@ -9,8 +9,8 @@ import { AuthService } from './components/auth/auth.service';
 export class AppComponent {
   title = 'shoppingcart';
   length: number;
-  @ViewChild('navmenu') navMenu: ElementRef<HTMLElement>
-  @ViewChild('menubtn') menuBtn: ElementRef<HTMLElement>
+  @ViewChild('navmenu', { static: true }) navMenu: ElementRef<HTMLElement>
+  @ViewChild('menubtn', { static: true }) menuBtn: ElementRef<HTMLElement>
   constructor(private authservice: AuthService){
 
   }

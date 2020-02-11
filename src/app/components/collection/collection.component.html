@@ -21,8 +21,52 @@
                 <div class="modal" id="modalEdicion">
                     <div (click)="closeModal()" class="modal-background"></div>
                     <div class="modal-content box is-relative">
-                            <div *ngIf="loadItems" class="spinloader"></div>
-                        <div *ngIf="!loadItems" class="is-flex-tablet">
+                            <ng-template #skeleton>
+                                <!-- <div class="spinloader"></div> -->
+                                <div class="skeleton is-flex-tablet">
+                                    <div class="modal-image">
+                                        <figure class="image is-1by1">
+                                            <img src="../../../assets/placeholder.png" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="modal-details">
+                                        <div class="field">
+                                            <h4 class="title is-size-6">
+                                               
+                                            </h4>
+                                        </div>
+                                        <div class="field">
+                                            <h4 class="subtitle is-size-6">
+                                                
+                                            </h4>
+                                        </div>
+                                        <div class="field">
+                                            <h3 class="subtitle is-size-6">
+                                                
+                                            </h3>
+                                        </div>
+                                        <div class="field">
+                                            <h3 class="subtitle is-size-6">
+                                                
+                                            </h3>
+                                        </div>
+                                        <div class="field">
+                                            <h2 class="subtitle is-size-6">
+                                                
+                                            </h2>
+                                        </div>
+                                        <div class="field">
+                                            <p class="subtitle is-size-6">
+                                                
+                                            </p>
+                                        </div>
+                                        <div class="ske-btn">
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        <div *ngIf="singleItemLoaded; else skeleton" class="is-flex-tablet">
                             <div class="modal-image">
                                 <figure *ngIf="singleimage" class="image is-1by1">
                                     <img [src]="singleimage" alt="">

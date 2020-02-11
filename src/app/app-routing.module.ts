@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'collection', component: CollectionComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'auth', loadChildren: './components/auth/auth.module#AuthModule' }
+  { path: 'auth', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) }
 ];
 
 @NgModule({

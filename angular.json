@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/shoppingcart",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -26,10 +27,10 @@
             "styles": [
               "src/styles.css",
               "node_modules/bulma/css/bulma.css",
-              "./node_modules/swiper/dist/css/swiper.css"
+              "./node_modules/swiper/css/swiper.css"
             ],
             "scripts": [
-              "./node_modules/swiper/dist/js/swiper.js"
+              "./node_modules/swiper/js/swiper.js"
             ],
             "es5BrowserSupport": true
           },
@@ -55,6 +56,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -137,5 +142,8 @@
       }
     }
   },
-  "defaultProject": "shoppingcart"
+  "defaultProject": "shoppingcart",
+  "cli": {
+    "analytics": "32d88ac6-f6b1-42c7-98bc-c873dfe0fcf4"
+  }
 }
